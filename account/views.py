@@ -9,7 +9,7 @@ from .forms import LoginForm
 class LoginView(FormView):
     template_name = 'login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('polls:main')  # Після успішного входу переходимо на домашню сторінку
+    success_url = reverse_lazy('main:first_page')  # Після успішного входу переходимо на домашню сторінку
 
     def form_valid(self, form):
         username = form.cleaned_data['username']
