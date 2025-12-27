@@ -1,9 +1,9 @@
 from django.urls import path
-from account import views
+from .views import LoginView, RegisterView
 
+app_name = 'account'  # важливо!
 
 urlpatterns = [
-    path('login/', views.LoginView.as_view(), name='login'),
-    path('', views.HomeView.as_view(), name='home'),  # додайте домашню сторінку
-    path('register/', views.RegisterView.as_view(), name='register')
+    path('login/', LoginView.as_view(), name='login'),
+    path('register/', RegisterView.as_view(), name='register'),
 ]

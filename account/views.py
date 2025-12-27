@@ -1,15 +1,15 @@
-from django.shortcuts import render
-
-from django.shortcuts import redirect
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import FormView
-from .forms import LoginForm
+from django.views.generic import FormView, CreateView, TemplateView
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import LoginForm, RegisterForm
 
+# LoginView без змін
 class LoginView(FormView):
     template_name = 'login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('main:first_page')  # Після успішного входу переходимо на домашню сторінку
+    success_url = reverse_lazy('main:first_page')
 
     def form_valid(self, form):
         username = form.cleaned_data['username']
@@ -21,22 +21,19 @@ class LoginView(FormView):
         else:
             form.add_error(None, 'Невірний логін або пароль')
             return self.form_invalid(form)
-        
 
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import CreateView
-from django.urls import reverse_lazy
-
+# RegisterView з правильною обробкою ролі та пароля
 class RegisterView(CreateView):
     template_name = 'register.html'
-    form_class = UserCreationForm
-    success_url = reverse_lazy('login')  # Після успішної реєстрації переходимо на сторінку логіну
+    form_class = RegisterForm  # наша форма з роллю
+    success_url = reverse_lazy('account:login')
 
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.set_password(form.cleaned_data['password'])  # хешуємо пароль
+        user.save()
+        return super().form_valid(form)
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
-
+# HomeView (Diary) без змін
 class HomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'home.html'
-
-
+    template_name = 'main/diary.html'
