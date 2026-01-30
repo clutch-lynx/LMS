@@ -26,3 +26,15 @@ class Grade(models.Model):
 
     def __str__(self):
         return f"{self.student.username} - {self.subject.title}: {self.value}"
+    
+
+class Lesson(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        limit_choices_to={'role': 'teacher'}
+    )
+    date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()

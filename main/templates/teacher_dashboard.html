@@ -88,16 +88,19 @@
 
             {% for subject in subjects %}
             <td>
+                {% for grade in grades %}
+                    {% if grade.student.id == student.id and grade.subject.id == subject.id %}
+                        {{ grade.value }}{% if not forloop.last %}, {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+                <br>
+
                 <input
                     type="number"
                     name="grade_{{ student.id }}_{{ subject.id }}"
                     min="1"
                     max="12"
-                    value="{% for grade in grades %}
-                               {% if grade.student.id == student.id and grade.subject.id == subject.id %}
-                                   {{ grade.value }}
-                               {% endif %}
-                           {% endfor %}"
                 >
             </td>
             {% endfor %}

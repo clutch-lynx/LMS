@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Расписание уроков</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f3f4f6;
+            padding: 20px;
+        }
+        form, table {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        input, select, button {
+            padding: 6px;
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background: #4f46e5;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>➕ Добавить урок</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Предмет:</label><br>
+    <select name="subject">
+        {% for subject in subjects %}
+            <option value="{{ subject.id }}">{{ subject.title }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>Преподаватель:</label><br>
+    <select name="teacher">
+        {% for teacher in teachers %}
+            <option value="{{ teacher.id }}">{{ teacher.username }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>Дата:</label><br>
+    <input type="date" name="date"><br>
+
+    <label>Начало:</label><br>
+    <input type="time" name="start_time"><br>
+
+    <label>Конец:</label><br>
+    <input type="time" name="end_time"><br><br>
+
+    <button type="submit">Сохранить урок</button>
+</form>
+
+<h2>📅 Расписание</h2>
+
+<table>
+    <tr>
+        <th>Дата</th>
+        <th>Время</th>
+        <th>Предмет</th>
+        <th>Преподаватель</th>
+    </tr>
+    {% for lesson in lessons %}
+    <tr>
+        <td>{{ lesson.date }}</td>
+        <td>{{ lesson.start_time }} - {{ lesson.end_time }}</td>
+        <td>{{ lesson.subject.title }}</td>
+        <td>{{ lesson.teacher.username }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
