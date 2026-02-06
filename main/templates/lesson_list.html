@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>📅 Розклад уроків</h2>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Дата</th>
+        <th>Час</th>
+        <th>Предмет</th>
+        <th>Вчитель</th>
+    </tr>
+
+    {% for lesson in lessons %}
+    <tr>
+        <td>{{ lesson.date }}</td>
+        <td>{{ lesson.start_time }} - {{ lesson.end_time }}</td>
+        <td>{{ lesson.subject.title }}</td>
+        <td>{{ lesson.teacher.username }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+{% if user.role == 'teacher' or user.role == 'admin' %}
+    <a href="{% url 'lesson_create' %}">➕ Додати урок</a>
+{% endif %}
+</body>
+</html>

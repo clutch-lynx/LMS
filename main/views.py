@@ -139,3 +139,12 @@ class LessonCreateView(RoleRequiredMixin, TemplateView):
             end_time=request.POST['end_time'],
         )
         return redirect('main:lesson_create')
+    
+
+class LessonListView(LoginRequiredMixin, TemplateView):
+    template_name = 'lesson_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['lessons'] = Lesson.objects.order_by('date', 'start_time')
+        return context

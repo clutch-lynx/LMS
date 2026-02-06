@@ -85,9 +85,15 @@
 <div class="top-bar">
     <h1>Електронний щоденник</h1>
 
-    <a href="{% url 'main:first_page' %}">
-        <button class="home-btn">На головну</button>
-    </a>
+    <div>
+        <a href="/lessons">
+            <button class="home-btn">Розклад уроків</button>
+        </a>
+
+        <a href="{% url 'main:first_page' %}">
+            <button class="home-btn">На головну</button>
+        </a>
+    </div>
 </div>
 
 <div class="container">
