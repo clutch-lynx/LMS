@@ -10,4 +10,4 @@ pytest==9.0.2
 sqlparse==0.5.4
 tzdata==2025.2
 whitenoise==6.11.0
-mysqlclient
+mysqlclient == 5.5.62
