@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sql8816461',
         'USER': 'sql8816461',
-        'PASSWORD': ' JECNXlUWU7',
+        'PASSWORD': 'JECNXlUWU7',
         'HOST': 'sql8.freesqldatabase.com',
         'PORT': '3306',
     }
