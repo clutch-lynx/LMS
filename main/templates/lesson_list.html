@@ -29,7 +29,7 @@
 <br>
 
 {% if user.role == 'teacher' or user.role == 'admin' %}
-    <a href="{% url 'lesson_create' %}" >➕ Додати урок</a>
+    <a href="/lesson_create" class="btn">➕ Додати урок</a>
 {% endif %}
 </body>
 </html>
