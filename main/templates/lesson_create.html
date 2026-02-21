@@ -99,7 +99,7 @@ tr:last-child td{
 </head>
 <body>
 
-<h2>➕ Добавить урок</h2>
+<h2>➕ Добавити урок</h2>
 <a href="{% url 'main:first_page' %}" class="home-btn">На головну</a>
 <form method="post">
     {% csrf_token %}
@@ -111,7 +111,7 @@ tr:last-child td{
         {% endfor %}
     </select><br>
 
-    <label>Преподаватель:</label><br>
+    <label>Вчитель:</label><br>
     <select name="teacher">
         {% for teacher in teachers %}
             <option value="{{ teacher.id }}">{{ teacher.username }}</option>
@@ -121,16 +121,16 @@ tr:last-child td{
     <label>Дата:</label><br>
     <input type="date" name="date"><br>
 
-    <label>Начало:</label><br>
+    <label>Початок:</label><br>
     <input type="time" name="start_time"><br>
 
-    <label>Конец:</label><br>
+    <label>Кінець уроку:</label><br>
     <input type="time" name="end_time"><br><br>
 
     <button type="submit">Сохранить урок</button>
 </form>
 
-<h2>📅 Расписание</h2>
+<h2>📅 Розклад</h2>
 
 <table>
     <tr>

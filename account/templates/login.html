@@ -4,10 +4,105 @@
 <head>
     <meta charset="UTF-8">
     <title>Вхід</title>
- 
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:linear-gradient(135deg,#5b6fd8,#7fb3c8);
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* карточка */
+.auth-wrap{
+    background:white;
+    padding:30px 35px;
+    border-radius:14px;
+    width:340px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+/* заголовок */
+.auth-wrap h2{
+    margin-bottom:5px;
+    color:#1f2937;
+}
+
+/* подзаголовок */
+.auth-sub{
+    font-size:14px;
+    color:#6b7280;
+    margin-bottom:20px;
+}
+
+/* поля формы */
+.auth-wrap input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border-radius:8px;
+    border:1px solid #d1d5db;
+    outline:none;
+    transition:0.2s;
+}
+
+.auth-wrap input:focus{
+    border-color:#5b6fd8;
+    box-shadow:0 0 0 2px rgba(91,111,216,0.2);
+}
+
+/* кнопка */
+.auth-wrap button{
+    width:100%;
+    padding:11px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#5b6fd8;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.auth-wrap button:hover{
+    background:#4a5cd1;
+}
+
+/* ошибка */
+.error-msg{
+    color:#ef4444;
+    font-size:14px;
+    margin-top:10px;
+}
+
+/* ссылки */
+.auth-links{
+    margin-top:15px;
+    font-size:14px;
+}
+
+.auth-links a{
+    color:#5b6fd8;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.auth-links a:hover{
+    text-decoration:underline;
+}
+
+.small{
+    color:#6b7280;
+    margin-right:5px;
+}
+</style>
 </head>
 <body>
-
 <div class="auth-wrap">
     <h2>Вхід</h2>
     <p class="auth-sub">Введіть свої дані для входу в акаунт.</p>
