@@ -1,35 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Розклад</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#aab0c4;
+    padding:20px;
+}
+
+/* заголовки */
+h2{
+    margin-top:0;
+    font-weight:600;
+    color:#1f2937;
+}
+
+/* карточки (форма и таблица) */
+form, table{
+    background:#ffffff;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* inputs */
+input, select{
+    padding:8px;
+    margin:6px 0;
+    border-radius:6px;
+    border:1px solid #d1d5db;
+    outline:none;
+}
+
+/* кнопка */
+button{
+    padding:8px 14px;
+    border:none;
+    border-radius:6px;
+    background:#4f6bdc;
+    color:white;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    background:#3f55c8;
+}
+
+/* таблица */
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+}
+
+/* шапка таблицы */
+th{
+    background:#78b2c7;
+    color:#0f172a;
+    padding:12px;
+    font-weight:600;
+    text-align:center;
+}
+
+/* строки */
+td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #e5e7eb;
+}
+
+tr:last-child td{
+    border-bottom:none;
+}
+.home-btn{
+    position:fixed;
+    top:15px;
+    right:20px;
+    background:#e5e7eb;
+    color:#374151;
+    padding:8px 14px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    transition:0.2s;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.home-btn:hover{
+    background:#d1d5db;
+}
+</style>
+
 </head>
 <body>
-    <h2>📅 Розклад уроків</h2>
 
-<table border="1" cellpadding="8">
-    <tr>
-        <th>Дата</th>
-        <th>Час</th>
-        <th>Предмет</th>
-        <th>Вчитель</th>
-    </tr>
+<h2>📅 Розклад уроків</h2>
+<a href="{% url 'main:first_page' %}" class="home-btn">На головну</a>
+<table>
+<tr>
+    <th>Дата</th>
+    <th>Час</th>
+    <th>Предмет</th>
+    <th>Вчитель</th>
+</tr>
 
-    {% for lesson in lessons %}
-    <tr>
-        <td>{{ lesson.date }}</td>
-        <td>{{ lesson.start_time }} - {{ lesson.end_time }}</td>
-        <td>{{ lesson.subject.title }}</td>
-        <td>{{ lesson.teacher.username }}</td>
-    </tr>
-    {% endfor %}
+{% for lesson in lessons %}
+<tr>
+    <td>{{ lesson.date }}</td>
+    <td>{{ lesson.start_time }} - {{ lesson.end_time }}</td>
+    <td>{{ lesson.subject.title }}</td>
+    <td>{{ lesson.teacher.username }}</td>
+</tr>
+{% endfor %}
 </table>
 
-<br>
-
 {% if user.role == 'teacher' or user.role == 'admin' %}
-    <a href="/lessons/create" class="btn">➕ Додати урок</a>
+<a href="/lessons/create" class="btn">➕ Додати урок</a>
 {% endif %}
+
 </body>
 </html>
